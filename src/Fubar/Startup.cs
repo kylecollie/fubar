@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Fubar.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Data.Entity;
+using Fubar.Models;
 
 namespace Fubar
 {
@@ -32,11 +34,21 @@ namespace Fubar
         {
             services.AddMvc();
 
+            var connection = Configuration["AppSettings:SqliteConnectionString"];
+
+            services.AddEntityFramework()
+                .AddSqlite()
+                .AddDbContext<TicketContext>(options => options.UseSqlite(connection));
+
+            services.AddTransient<TicketContextSeedData>();
+            services.AddScoped<IFubarRepository, FubarRepository>();
+
             services.AddScoped<IMailService, MailService>();
+            //services.AddScoped<ITicketRepository, TicketRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, TicketContextSeedData seeder)
         {
             //app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -49,6 +61,7 @@ namespace Fubar
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
+            seeder.EnsureSeedData();
         }
 
         // Entry point for the application.

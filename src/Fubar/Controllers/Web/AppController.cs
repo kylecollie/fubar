@@ -1,23 +1,27 @@
-﻿using Fubar.Services;
+﻿using Fubar.Models;
+using Fubar.Services;
 using Fubar.ViewModels;
 using Microsoft.AspNet.Mvc;
 using System;
+using System.Linq;
 
 namespace Fubar.Controllers.Web
 {
     public class AppController : Controller
     {
         private IMailService _mailService;
+        private IFubarRepository _repository;
 
-        public AppController(IMailService service)
+        public AppController(IMailService service, IFubarRepository repository)
         {
             _mailService = service;
+            _repository = repository;
         }
-
 
         public IActionResult Index()
         {
-            return View();
+            var tickets = _repository.GetAllTickets();
+            return View(tickets);
         }
 
         public IActionResult About()
