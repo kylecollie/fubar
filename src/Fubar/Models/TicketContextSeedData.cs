@@ -166,11 +166,28 @@ namespace Fubar.Models
                     Version = "1.2.0.5",
                     ProductId = 1,
                     StepsToReproduce = "1. Try this. 2. Do that. 3. Pick this one.",
-                    AdditionalInformation = "This is extra info about this tproblem.",
+                    AdditionalInformation = "This is extra info about this problem.",
                     DateSubmitted = DateTime.UtcNow,
                     LastUpdate = DateTime.UtcNow
                 };
                 _context.Tickets.Add(tck1);
+                var tck2 = new Ticket()
+                {
+                    Summary = "Demo ticket - Fixed",
+                    Description = "This is a simple demo ticket that has been resolved.",
+                    CategoryId = 1,
+                    SeverityId = 3,
+                    PriorityId = 2,
+                    ResolutionId = 3,
+                    StatusId = 3,
+                    Version = "1.2.0.5",
+                    ProductId = 1,
+                    StepsToReproduce = "1. Try this. 2. Do that. 3. Pick this one.",
+                    AdditionalInformation = "This is extra info about this problem.",
+                    DateSubmitted = DateTime.UtcNow,
+                    LastUpdate = DateTime.UtcNow
+                };
+                _context.Tickets.Add(tck2);
             }
             _context.SaveChanges();
         }

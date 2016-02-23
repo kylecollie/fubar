@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
 using Fubar.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Fubar
 {
@@ -34,6 +35,8 @@ namespace Fubar
         {
             services.AddMvc();
 
+            services.AddLogging();
+
             var connection = Configuration["AppSettings:SqliteConnectionString"];
 
             services.AddEntityFramework()
@@ -48,9 +51,10 @@ namespace Fubar
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, TicketContextSeedData seeder)
+        public void Configure(IApplicationBuilder app, TicketContextSeedData seeder, ILoggerFactory loggerFactory)
         {
-            //app.UseDefaultFiles();
+            loggerFactory.AddDebug(LogLevel.Information);
+
             app.UseStaticFiles();
 
             app.UseMvc(config => 

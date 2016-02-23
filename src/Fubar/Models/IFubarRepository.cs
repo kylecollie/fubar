@@ -6,5 +6,6 @@ namespace Fubar.Models
     {
         IEnumerable<Ticket> GetAllTickets();
         IEnumerable<Ticket> GetAllTicketsUnresolved();
+        IEnumerable<Ticket> GetAllTicketsResolved();
     }
 }

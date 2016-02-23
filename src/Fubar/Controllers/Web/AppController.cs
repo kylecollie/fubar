@@ -21,6 +21,8 @@ namespace Fubar.Controllers.Web
         public IActionResult Index()
         {
             var tickets = _repository.GetAllTickets();
+            //var tickets = _repository.GetAllTicketsUnresolved();
+            //var tickets = _repository.GetAllTicketsResolved();
             return View(tickets);
         }
 
