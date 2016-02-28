@@ -50,6 +50,7 @@ namespace Fubar
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPriorityRepository, PriorityRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IResolutionRepository, ResolutionRepository>();
 
             services.AddScoped<IMailService, MailService>();
             //services.AddScoped<ITicketRepository, TicketRepository>();
@@ -68,6 +69,7 @@ namespace Fubar
                 config.CreateMap<Category, CategoryViewModel>().ReverseMap();
                 config.CreateMap<Priority, PriorityViewModel>().ReverseMap();
                 config.CreateMap<Product, ProductViewModel>().ReverseMap();
+                config.CreateMap<Resolution, ResolutionViewModel>().ReverseMap();
             }); ;
 
             app.UseMvc(config => 
