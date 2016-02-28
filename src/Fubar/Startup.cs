@@ -51,6 +51,7 @@ namespace Fubar
             services.AddScoped<IPriorityRepository, PriorityRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IResolutionRepository, ResolutionRepository>();
+            services.AddScoped<ISeverityRepository, SeverityRepository>();
 
             services.AddScoped<IMailService, MailService>();
             //services.AddScoped<ITicketRepository, TicketRepository>();
@@ -70,6 +71,7 @@ namespace Fubar
                 config.CreateMap<Priority, PriorityViewModel>().ReverseMap();
                 config.CreateMap<Product, ProductViewModel>().ReverseMap();
                 config.CreateMap<Resolution, ResolutionViewModel>().ReverseMap();
+                config.CreateMap<Severity, SeverityViewModel>().ReverseMap();
             }); ;
 
             app.UseMvc(config => 
