@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F8A2A69-150C-4C64-BE69-364721E48749}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Fubar", "src\Fubar\Fubar.xproj", "{BF0BEE0C-A371-4E0B-98E5-53F69AD99732}"

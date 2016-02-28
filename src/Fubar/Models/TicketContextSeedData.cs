@@ -17,6 +17,11 @@ namespace Fubar.Models
             if (!_context.Severities.Any())
             {
                 // Add new Severity data
+                var init = new Severity()
+                {
+                    Name = "Unspecified"
+                };
+                _context.Severities.Add(init);
                 var sev1 = new Severity()
                 {
                     Name = "Major"
@@ -39,7 +44,7 @@ namespace Fubar.Models
                 // Add new Category data
                 var cat1 = new Category()
                 {
-                    Name = "Bug"
+                    Name = "Other"
                 };
                 _context.Categories.Add(cat1);
                 var cat2 = new Category()
@@ -49,13 +54,18 @@ namespace Fubar.Models
                 _context.Categories.Add(cat2);
                 var cat3 = new Category()
                 {
-                    Name = "Other"
+                    Name = "Bug"
                 };
                 _context.Categories.Add(cat3);
             }
             if (!_context.Priorities.Any())
             {
                 // Add new Priority data
+                var init = new Priority()
+                {
+                    Name = "Unspecified"
+                };
+                _context.Priorities.Add(init);
                 var p1 = new Priority()
                 {
                     Name = "Normal"

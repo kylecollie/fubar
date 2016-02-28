@@ -17,6 +17,11 @@ namespace Fubar.Models
             _logger = logger;
         }
 
+        public void AddTicket(Ticket newTicket)
+        {
+            _context.Add(newTicket);
+        }
+
         public IEnumerable<Ticket> GetAllTickets()
         {
             try
@@ -60,6 +65,11 @@ namespace Fubar.Models
                 _logger.LogError("Could not get tickets from database", ex);
                 return null;
             }
+        }
+
+        public bool SaveAll()
+        {
+            return _context.SaveChanges() > 0;
         }
     }
 }

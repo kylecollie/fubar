@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Fubar.Models;
+using Fubar.Services;
+using Fubar.ViewModels;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Fubar.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Data.Entity;
-using Fubar.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json.Serialization;
 
 namespace Fubar
 {
@@ -33,7 +31,11 @@ namespace Fubar
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(opt => 
+                {
+                    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
 
             services.AddLogging();
 
@@ -45,6 +47,7 @@ namespace Fubar
 
             services.AddTransient<TicketContextSeedData>();
             services.AddScoped<IFubarRepository, FubarRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddScoped<IMailService, MailService>();
             //services.AddScoped<ITicketRepository, TicketRepository>();
@@ -56,6 +59,12 @@ namespace Fubar
             loggerFactory.AddDebug(LogLevel.Information);
 
             app.UseStaticFiles();
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Ticket, TicketViewModel>().ReverseMap();
+                config.CreateMap<Category, CategoryViewModel>().ReverseMap();
+            }); ;
 
             app.UseMvc(config => 
             {

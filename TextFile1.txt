@@ -1,0 +1,14 @@
+Category
+1	Other
+
+Priority
+1	Unspecified
+
+Severity
+4	Unspecified
+
+Status
+1	Unconfirmed
+
+
+ Unable to resolve service for type 'Fubar.Models.ICategoryRepository' while attempting to activate 'Fubar.Controllers.Api.CategoryController'.
