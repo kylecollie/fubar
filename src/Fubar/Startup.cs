@@ -48,6 +48,8 @@ namespace Fubar
             services.AddTransient<TicketContextSeedData>();
             services.AddScoped<IFubarRepository, FubarRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPriorityRepository, PriorityRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IMailService, MailService>();
             //services.AddScoped<ITicketRepository, TicketRepository>();
@@ -64,6 +66,8 @@ namespace Fubar
             {
                 config.CreateMap<Ticket, TicketViewModel>().ReverseMap();
                 config.CreateMap<Category, CategoryViewModel>().ReverseMap();
+                config.CreateMap<Priority, PriorityViewModel>().ReverseMap();
+                config.CreateMap<Product, ProductViewModel>().ReverseMap();
             }); ;
 
             app.UseMvc(config => 
