@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Fubar.Models.Ticket>
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-6">
+        <h2>Fubar</h2>
+        <p>What's wrong?</p>
+
+        <form>
+            <div class="form-group">
+                <label>Date</label>
+                <input class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Application</label>
+                <input class="form-control" />
+            </div>
+            <div><input type="submit" value="Add" class="btn btn-success" /></div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Coming soon!</h2>
+        <ul>
+            @foreach (var ticket in Model)
+            {
+                <li>@ticket.Summary (@ticket.DateSubmitted.ToShortDateString())</li>
+            }
+        </ul>
+    </div>
+
+</div>
