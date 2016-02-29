@@ -5,9 +5,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 namespace Fubar.Controllers.Api
 {
@@ -43,5 +41,35 @@ namespace Fubar.Controllers.Api
                 return Json("Error occurred finding all products.");
             }
         }
+
+        public JsonResult Post([FromBody]ProductViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // Map to Entity
+                    var newProduct = Mapper.Map<Product>(vm);
+                    // Save to Database
+                    _repository.AddProduct(newProduct);
+                    if (_repository.SaveAll())
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.Created;
+                        return Json(Mapper.Map<ProductViewModel>(newProduct));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to save new product.", ex);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Failed to save new product.");
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json("Validation failed on new product.");
+        }
+
+
     }
 }
