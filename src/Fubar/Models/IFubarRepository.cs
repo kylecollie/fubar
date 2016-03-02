@@ -9,5 +9,7 @@ namespace Fubar.Models
         IEnumerable<Ticket> GetAllTicketsResolved();
         void AddTicket(Ticket newTicket);
         bool SaveAll();
+        IEnumerable<Product> GetAllProducts();
+        void AddProduct(Product newProduct);
     }
 }

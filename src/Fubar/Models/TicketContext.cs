@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Fubar.Models
 {
-    public class TicketContext : DbContext
+    public class TicketContext : IdentityDbContext<FubarUser>
     {
         public TicketContext()
         {

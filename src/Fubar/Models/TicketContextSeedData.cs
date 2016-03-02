@@ -1,19 +1,35 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Fubar.Models
 {
     public class TicketContextSeedData
     {
         private TicketContext _context;
+        private UserManager<FubarUser> _userManager;
 
-        public TicketContextSeedData(TicketContext context)
+        public TicketContextSeedData(TicketContext context, UserManager<FubarUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        public void EnsureSeedData()
+        public async Task EnsureSeedDataAsync()
         {
+            if (await _userManager.FindByEmailAsync("paul.bunyan@fubar.com") == null) 
+            {
+                // Add the user
+                var newUser = new FubarUser()
+                {
+                    UserName = "paulbunyan",
+                    Email = "paul.bunyan@fubar.com"
+                };
+
+                await _userManager.CreateAsync(newUser, "P@ssw0rd!");
+            }
+
             if (!_context.Severities.Any())
             {
                 // Add new Severity data
@@ -178,7 +194,8 @@ namespace Fubar.Models
                     StepsToReproduce = "1. Try this. 2. Do that. 3. Pick this one.",
                     AdditionalInformation = "This is extra info about this problem.",
                     DateSubmitted = DateTime.UtcNow,
-                    LastUpdate = DateTime.UtcNow
+                    LastUpdate = DateTime.UtcNow,
+                    UserName = "paulbunyan"
                 };
                 _context.Tickets.Add(tck1);
                 var tck2 = new Ticket()
@@ -195,7 +212,8 @@ namespace Fubar.Models
                     StepsToReproduce = "1. Try this. 2. Do that. 3. Pick this one.",
                     AdditionalInformation = "This is extra info about this problem.",
                     DateSubmitted = DateTime.UtcNow,
-                    LastUpdate = DateTime.UtcNow
+                    LastUpdate = DateTime.UtcNow,
+                    UserName = "paulbunyan"
                 };
                 _context.Tickets.Add(tck2);
             }

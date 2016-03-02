@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Fubar.Models.Product>
+@{
+    ViewBag.Title = "Admin";
+}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Products</h2>
+        <ul>
+            @foreach (var product in Model)
+            {
+                <li>@product.Name</li>
+            }
+        </ul>
+    </div>
+</div>

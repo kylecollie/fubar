@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Fubar.Models;
 using Fubar.ViewModels;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,9 +14,9 @@ namespace Fubar.Controllers.Api
     public class ProductController : Controller
     {
         private ILogger<ProductController> _logger;
-        private IProductRepository _repository;
+        private IFubarRepository _repository;
 
-        public ProductController(IProductRepository repository, ILogger<ProductController> logger)
+        public ProductController(IFubarRepository repository, ILogger<ProductController> logger)
         {
             _repository = repository;
             _logger = logger;
@@ -42,6 +43,7 @@ namespace Fubar.Controllers.Api
             }
         }
 
+        [Authorize]
         public JsonResult Post([FromBody]ProductViewModel vm)
         {
             try

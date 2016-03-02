@@ -43,8 +43,6 @@ namespace Fubar.Models
         public DateTime DateSubmitted { get; set; }
         public DateTime LastUpdate { get; set; }
 
-        // Foreign key for User
-        //public int UserId { get; set; }
-        //public User User { get; set; }
+        public string UserName { get; set; }
     }
 }

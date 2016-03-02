@@ -1,6 +1,7 @@
 ﻿using Fubar.Models;
 using Fubar.Services;
 using Fubar.ViewModels;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using System;
 using System.Linq;
@@ -24,6 +25,13 @@ namespace Fubar.Controllers.Web
             //var tickets = _repository.GetAllTicketsUnresolved();
             //var tickets = _repository.GetAllTicketsResolved();
             return View(tickets);
+        }
+
+        [Authorize]
+        public IActionResult Admin()
+        {
+            var products = _repository.GetAllProducts();
+            return View(products);
         }
 
         public IActionResult About()

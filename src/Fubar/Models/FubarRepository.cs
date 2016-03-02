@@ -71,5 +71,23 @@ namespace Fubar.Models
         {
             return _context.SaveChanges() > 0;
         }
+
+        public void AddProduct(Product newProduct)
+        {
+            _context.Add(newProduct);
+        }
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+            try
+            {
+                return _context.Products.OrderBy(p => p.ID).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get products from database", ex);
+                return null;
+            }
+        }
     }
 }
