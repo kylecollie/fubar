@@ -6,18 +6,25 @@
     <div class="col-md-6">
         <h2>Fubar</h2>
         <p>What's wrong?</p>
+        <div ng-app="index" ng-controller="indexController">
+            <form>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input class="form-control" type="date" />
+                </div>
+                <div class="form-group">
+                    <label>Product</label>
+                    <select ng-model="selectedProduct" ng-options="product.id as product.name in products" class="form-control">
+                        <option value="">Select Product</option>
+                    </select>
+                    <p>Selected Product: <b>{{selectedProduct}}</b></p>
+                    
 
-        <form>
-            <div class="form-group">
-                <label>Date</label>
-                <input class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>Application</label>
-                <input class="form-control" />
-            </div>
-            <div><input type="submit" value="Add" class="btn btn-success" /></div>
-        </form>
+                    @*<input class="form-control" />*@
+                </div>
+                <div><input type="submit" value="Add" class="btn btn-success" /></div>
+            </form>
+        </div>
     </div>
 
     <div class="col-md-6">
