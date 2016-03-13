@@ -64,6 +64,35 @@ namespace Fubar.Controllers.Api
             }
         }
 
+        [HttpPut("")]
+        public JsonResult Put([FromBody]ProductViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // Map to entity
+                    var updateProduct = Mapper.Map<Product>(vm);
+                    // Save to database
+                    _repository.UpdateProduct(updateProduct);
+                    if (_repository.SaveAll())
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.OK;
+                        return Json(Mapper.Map<ProductViewModel>(updateProduct));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to update product.", ex);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Failed to update product.");
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json("Validation failed on product.");
+        }
+
         [Authorize]
         public JsonResult Post([FromBody]ProductViewModel vm)
         {

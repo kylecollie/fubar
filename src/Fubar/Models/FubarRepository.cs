@@ -104,10 +104,9 @@ namespace Fubar.Models
             }
         }
 
-        public void UpdateProduct(Product thisProduct)
+        public  void UpdateProduct(Product thisProduct)
         {
             _context.Entry(thisProduct).State = EntityState.Modified;
-            _context.SaveChanges();
         }
     }
 }
