@@ -43,6 +43,27 @@ namespace Fubar.Controllers.Api
             }
         }
 
+        [HttpGet("{id:int}")]
+        public JsonResult Get(int id)
+        {
+            try
+            {
+                var results = Mapper.Map<ProductViewModel>(_repository.GetProductById(id));
+                if (results == null)
+                {
+                    return Json(null);
+                }
+
+                return Json(results);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to get product.", ex);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Error occurred finding product.");
+            }
+        }
+
         [Authorize]
         public JsonResult Post([FromBody]ProductViewModel vm)
         {

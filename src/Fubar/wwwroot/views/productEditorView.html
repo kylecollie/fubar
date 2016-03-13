@@ -1,0 +1,29 @@
+﻿<div>
+    <a href="#/" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i> Back</a>
+    <div class="col-md-6">
+        <h2>Fubar - {{vm.product.name}}</h2>
+        <wait-cursor display-when="vm.isBusy"></wait-cursor>
+        <div class="alert alert-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</div>
+
+        <form novalidate name="updateProductForm" ng-submit="vm.updateProduct()">
+            <div class="form-group">
+                <label>Id</label>
+                <input class="form-control" type="text" ng-readonly="true" value="{{ vm.product.id }}" />
+            </div>
+            <div class="form-group">
+                <label>Product</label>
+                <input class="form-control" id="name" name="name" ng-model="vm.product.name" required ng-minlength="5" value="{{ vm.product.name }}" />
+                <span class="text-danger" ng-show="updateProductForm.name.$error.required">Required</span>
+                <span class="text-danger" ng-show="updateProductForm.name.$error.minlength">Must be 5 characters or more</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success btn-sm" ng-disabled="updateProductForm.$invalid" />
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Products</h2>
+    </div>
+
+</div>

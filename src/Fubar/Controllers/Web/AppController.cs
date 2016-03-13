@@ -31,7 +31,8 @@ namespace Fubar.Controllers.Web
         public IActionResult Admin()
         {
             var products = _repository.GetAllProducts();
-            return View(products);
+            //return View(products);
+            return View();
         }
 
         public IActionResult About()

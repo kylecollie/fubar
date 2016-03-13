@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Data.Entity;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +89,25 @@ namespace Fubar.Models
                 _logger.LogError("Could not get products from database", ex);
                 return null;
             }
+        }
+
+        public Product GetProductById(int id)
+        {
+            try
+            {
+                return _context.Products.Where(p => p.ID == id).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get product from database", ex);
+                return null;
+            }
+        }
+
+        public void UpdateProduct(Product thisProduct)
+        {
+            _context.Entry(thisProduct).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

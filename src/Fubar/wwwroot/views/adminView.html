@@ -1,0 +1,25 @@
+﻿<div class="col-sm-6 col-sm-offset-3">
+    <div class="text-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</div>
+    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+    <table class="table table-responsive table-striped">
+        <tr ng-repeat="product in vm.products">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td><a ng-href="#/productEditor/{{product.id}}" class="btn btn-sm btn-primary">Manage</a></td>
+        </tr>
+    </table>
+
+    <form novalidate name="newProductForm" ng-submit="vm.addProduct()">
+        <div class="form-group">
+            <label for="name">Product Name</label>
+            <input class="form-control" type="text" id="name" name="name" ng-model="vm.newProduct.name" required ng-minlength="5" />
+            <span ng-show="newProductForm.name.$error.required" class="text-warning">Name is required.</span>
+            <span ng-show="newProductForm.name.$error.minlength" class="text-warning">Name must be at least five characters.</span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add"
+                   class="btn btn-success btn-sm"
+                   ng-disabled="newProductForm.$invalid" />
+        </div>
+    </form>
+</div>

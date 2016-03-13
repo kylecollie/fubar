@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/simplecontrols.js"></script>
+}
 <div class="row">
     <div class="col-md-6">
         <h2>Fubar</h2>
@@ -14,13 +19,13 @@
                 </div>
                 <div class="form-group">
                     <label>Product</label>
-                    <select ng-model="selectedProduct" ng-options="product.id as product.name in products" class="form-control">
+                    @*<select ng-model="selectedProduct" ng-options="product.id as product.name in products" class="form-control">
                         <option value="">Select Product</option>
-                    </select>
-                    <p>Selected Product: <b>{{selectedProduct}}</b></p>
+                    </select>*@
+                    @*<p>Selected Product: <b>{{selectedProduct}}</b></p>*@
                     
 
-                    @*<input class="form-control" />*@
+                    <input class="form-control" />
                 </div>
                 <div><input type="submit" value="Add" class="btn btn-success" /></div>
             </form>
