@@ -27,6 +27,11 @@ namespace Fubar.Controllers.Web
             return View(tickets);
         }
 
+        public IActionResult Ticket()
+        {
+            return View();
+        }
+
         [Authorize]
         public IActionResult Admin()
         {

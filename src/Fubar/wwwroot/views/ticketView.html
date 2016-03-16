@@ -1,0 +1,88 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Ticket</h2>
+    <form novalidate name="newTicketForm" ng-submit="vm.addTicket()">
+        <div class="form-group">
+            <label for="summary">Summary</label>
+            <input class="form-control" type="text"
+                   id="summary" name="summary" ng-model="vm.newTicket.summary"
+                   required ng-maxlength="255" ng-minlength="5" />
+            <span ng-show="newTicketForm.summary.$error.required"
+                  class="text-warning">Summary is required.</span>
+            <span ng-show="newTicketForm.summary.$error.minlength"
+                  class="text-warning">Summary must be at least five characters.</span>
+            <span ng-show="newTicketForm.summary.$error.maxlength"
+                  class="text-warning">Summary must be less than 255 characters.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control"
+                      id="description" name="description" ng-model="vm.newTicket.description" />
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <select ng-model="selectedCategory" ng-options="x for (x, y) in categories" id="category" name="category"><option value="">Select Category</option></select>
+                <h5>Debug - selected: {{selectedCategory}}</h5>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="severity">Severity</label>
+                <select ng-model="selectedSeverity" ng-options="x for (x, y) in severities" id="severity" name="severity"><option value="">Select Severity</select>
+                <h5>Debug - selected: {{selectedSeverity}}</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="priority">Priority</label>
+                <select ng-model="selectedPriority" ng-options="x for (x, y) in priorities" id="priorities" name="priorities"><option value="">Select Priority</select>
+                <h5>Debug - selected: {{selectedPriority}}</h5>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="resolution">Resolution</label>
+                <select ng-model="selectedResolution" ng-options="x for (x, y) in resolutions" id="resolutions" name="resolutions"><option value="">Select Resolution</select>
+                <h5>Debug - selected: {{selectedResolution}}</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="resolution">Status</label>
+                <select ng-model="selectedStatus" ng-options="x for (x, y) in statuses" id="statuses" name="statuses"><option value="">Select Status</select>
+                <h5>Debug - selected: {{selectedStatus}}</h5>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="product">Product</label>
+                <select ng-model="selectedProduct" ng-options="x for (x, y) in products" id="products" name="products"><option value="">Select Product</select>
+                <h5>Debug - selected: {{selectedProduct}}</h5>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="version">Version</label>
+            <input class="form-control" type="text"
+                   id="version" name="version" ng-model="vm.newTicket.version" />
+        </div>
+
+        <div class="form-group">
+            <label for="stepsToReproduce">Steps To Reproduce</label>
+            <input class="form-control" type="text"
+                   id="version" name="version" ng-model="vm.newTicket.stepsToReproduce" />
+        </div>
+
+        <div class="form-group">
+            <label for="additionalInformation">Additional Information</label>
+            <input class="form-control" type="text"
+                   id="version" name="version" ng-model="vm.newTicket.additionalInformation" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create Ticket" class="btn btn-success btn-lg" ng-disabled="newTicketForm.$invalid" />
+            <a href="\" class="btn btn-default btn-lg">Cancel</a>
+        </div>
+    </form>
+</div>
