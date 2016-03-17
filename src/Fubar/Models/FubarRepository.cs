@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fubar.Models
 {
@@ -73,6 +72,8 @@ namespace Fubar.Models
             return _context.SaveChanges() > 0;
         }
 
+
+        #region Product
         public void AddProduct(Product newProduct)
         {
             _context.Add(newProduct);
@@ -82,7 +83,7 @@ namespace Fubar.Models
         {
             try
             {
-                return _context.Products.OrderBy(p => p.ID).ToList();
+                return _context.Products.OrderBy(p => p.Name).ToList();
             }
             catch (Exception ex)
             {
@@ -104,9 +105,10 @@ namespace Fubar.Models
             }
         }
 
-        public  void UpdateProduct(Product thisProduct)
+        public void UpdateProduct(Product thisProduct)
         {
             _context.Entry(thisProduct).State = EntityState.Modified;
-        }
+        } 
+        #endregion
     }
 }

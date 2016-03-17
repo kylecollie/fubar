@@ -12,6 +12,7 @@
         var vm = this;
         vm.tickets = [];
         vm.newTicket = {};
+        //vm.products = {};
         vm.isBusy = true;
         vm.errorMessage = "";
 
@@ -30,52 +31,84 @@
             })
         };
 
-        $scope.categories = {
-            "Other": 1,
-            "Feature Request": 2,
-            "Bug": 3
-        };
+        $scope.categories = [];
+        $http.get("/api/categories")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.categories);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
 
-        $scope.severities = {
-            "Trivial": 1,
-            "Minor": 2,
-            "Major": 3,
-            "Unspecified": 4
-        };
-        
-        $scope.priorities = {
-            "Unspecified": 1,
-            "Normal": 2,
-            "High": 3,
-            "Urgent": 4
-        };
+        $scope.severities = [];
+        $http.get("/api/severities")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.severities);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
 
-        $scope.resolutions = {
-            "Will not fix": 1,
-            "Invalid": 2,
-            "Fixed": 3,
-            "Works for me": 4,
-            "Duplicate": 5
-        };
-        
-        $scope.statuses = {
-            "Unconfirmed": 1,
-            "Confirmed": 2,
-            "In Progress": 3,
-            "Resolved": 4,
-            "Verified": 5
-        };
+        $scope.priorities = [];
+        $http.get("/api/priorities")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.priorities);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
 
-        $scope.products = {
-            "Timber!": 1,
-            "Chipper": 2,
-            "Woody": 3,
-            "Splitter!": 4,
-            "Super Maul": 5
-        };
-        
+        $scope.resolutions = [];
+        $http.get("/api/resolutions")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.resolutions);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
 
-        
+        $scope.statuses = [];
+        $http.get("/api/statuses")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.statuses);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
+
+
+        $scope.products = [];
+        $http.get("/api/products")
+            .then(function (response) {
+                // success
+                angular.copy(response.data, $scope.products);
+            }, function (error) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + error;
+            })
+            .finally(function () {
+                vm.isBusy = false;
+            });
     }
 
 })();
