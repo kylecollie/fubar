@@ -80,15 +80,8 @@ namespace Fubar
 
             services.AddTransient<TicketContextSeedData>();
             services.AddScoped<IFubarRepository, FubarRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IPriorityRepository, PriorityRepository>();
-            //services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IResolutionRepository, ResolutionRepository>();
-            services.AddScoped<ISeverityRepository, SeverityRepository>();
-            services.AddScoped<IStatusRepository, StatusRepository>();
 
             services.AddScoped<IMailService, MailService>();
-            //services.AddScoped<ITicketRepository, TicketRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

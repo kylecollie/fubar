@@ -14,9 +14,9 @@ namespace Fubar.Controllers.Api
     public class StatusController : Controller
     {
         private ILogger<StatusController> _logger;
-        private IStatusRepository _repository;
+        private IFubarRepository _repository;
 
-        public StatusController(IStatusRepository repository, ILogger<StatusController> logger)
+        public StatusController(IFubarRepository repository, ILogger<StatusController> logger)
         {
             _repository = repository;
             _logger = logger;

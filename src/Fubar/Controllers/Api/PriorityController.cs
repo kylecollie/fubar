@@ -16,9 +16,9 @@ namespace Fubar.Controllers.Api
     public class PriorityController : Controller
     {
         private ILogger<PriorityController> _logger;
-        private IPriorityRepository _repository;
+        private IFubarRepository _repository;
 
-        public PriorityController(IPriorityRepository repository, ILogger<PriorityController> logger)
+        public PriorityController(IFubarRepository repository, ILogger<PriorityController> logger)
         {
             _repository = repository;
             _logger = logger;

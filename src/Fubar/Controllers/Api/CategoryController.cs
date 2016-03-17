@@ -15,9 +15,9 @@ namespace Fubar.Controllers.Api
     public class CategoryController : Controller
     {
         private ILogger<CategoryController> _logger;
-        private ICategoryRepository _repository;
+        private IFubarRepository _repository;
 
-        public CategoryController(ICategoryRepository repository, ILogger<CategoryController> logger)
+        public CategoryController(IFubarRepository repository, ILogger<CategoryController> logger)
         {
             _repository = repository;
             _logger = logger;

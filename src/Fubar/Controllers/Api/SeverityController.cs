@@ -15,9 +15,9 @@ namespace Fubar.Controllers.Api
     public class SeverityController : Controller
     {
         private ILogger<SeverityController> _logger;
-        private ISeverityRepository _repository;
+        private IFubarRepository _repository;
 
-        public SeverityController(ISeverityRepository repository, ILogger<SeverityController> logger )
+        public SeverityController(IFubarRepository repository, ILogger<SeverityController> logger )
         {
             _repository = repository;
             _logger = logger;

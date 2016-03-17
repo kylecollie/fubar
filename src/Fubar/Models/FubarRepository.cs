@@ -72,7 +72,6 @@ namespace Fubar.Models
             return _context.SaveChanges() > 0;
         }
 
-
         #region Product
         public void AddProduct(Product newProduct)
         {
@@ -108,7 +107,108 @@ namespace Fubar.Models
         public void UpdateProduct(Product thisProduct)
         {
             _context.Entry(thisProduct).State = EntityState.Modified;
-        } 
+        }
+        #endregion
+
+        #region Category
+        public void AddCategory(Category newCategory)
+        {
+            _context.Add(newCategory);
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            try
+            {
+                return _context.Categories.OrderBy(c => c.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get categories from database", ex);
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Severity
+        public void AddSeverity(Severity newSeverity)
+        {
+            _context.Add(newSeverity);
+        }
+
+        public IEnumerable<Severity> GetAllSeverities()
+        {
+            try
+            {
+                return _context.Severities.OrderBy(s => s.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get severities from database.", ex);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Priority
+        public void AddPriority(Priority newPriority)
+        {
+            _context.Add(newPriority);
+        }
+
+        public IEnumerable<Priority> GetAllPriorities()
+        {
+            try
+            {
+                return _context.Priorities.OrderBy(p => p.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get priorities from database", ex);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Resolution
+        public void AddResolution(Resolution newResolution)
+        {
+            _context.Add(newResolution);
+        }
+
+        public IEnumerable<Resolution> GetAllResolutions()
+        {
+            try
+            {
+                return _context.Resolutions.OrderBy(r => r.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get resolutions from database.", ex);
+                return null;
+            }
+        }
+        #endregion
+
+        #region Status
+        public void AddStatus(Status newStatus)
+        {
+            _context.Add(newStatus);
+        }
+
+        public IEnumerable<Status> GetAllStatuses()
+        {
+            try
+            {
+                return _context.Statuses.OrderBy(s => s.Name).ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Could not get statuses from database.", ex);
+                return null;
+            }
+        }
         #endregion
     }
 }

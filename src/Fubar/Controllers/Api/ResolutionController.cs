@@ -15,9 +15,9 @@ namespace Fubar.Controllers.Api
     public class ResolutionController : Controller
     {
         private ILogger<ResolutionController> _logger;
-        private IResolutionRepository _repository;
+        private IFubarRepository _repository;
 
-        public ResolutionController(IResolutionRepository repository, ILogger<ResolutionController> logger)
+        public ResolutionController(IFubarRepository repository, ILogger<ResolutionController> logger)
         {
             _repository = repository;
             _logger = logger;
