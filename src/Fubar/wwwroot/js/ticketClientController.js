@@ -12,7 +12,6 @@
         var vm = this;
         vm.tickets = [];
         vm.newTicket = {};
-        //vm.products = {};
         vm.isBusy = true;
         vm.errorMessage = "";
 
@@ -21,7 +20,7 @@
             $http.post("/api/tickets", vm.newTicket)
                 .then(function (response) {
                     // success
-
+                    vm.newTicket = {};
                 }, function (err) {
                     // failure
                     vm.errorMessage = "Failed to save new ticket.";

@@ -3,8 +3,6 @@ using Fubar.Services;
 using Fubar.ViewModels;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
-using System;
-using System.Linq;
 
 namespace Fubar.Controllers.Web
 {
@@ -27,6 +25,7 @@ namespace Fubar.Controllers.Web
             return View(tickets);
         }
 
+        [Authorize]
         public IActionResult Ticket()
         {
             return View();

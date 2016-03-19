@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 
 namespace Fubar.Controllers.Api
 {
@@ -32,11 +34,14 @@ namespace Fubar.Controllers.Api
         [HttpPost("")]
         public JsonResult Post([FromBody]TicketViewModel vm)
         {
+            var _userId = User.GetUserId();
+            var _userName = User.GetUserName();
             try
             {
                 if (ModelState.IsValid)
                 {
                     var newTicket = Mapper.Map<Ticket>(vm);
+                    newTicket.UserName = _userName;
 
                     // Save to Database
                     _logger.LogInformation("Attempting to save a new ticket.");
